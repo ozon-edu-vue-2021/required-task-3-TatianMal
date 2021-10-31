@@ -1,5 +1,5 @@
 <template>
-  <div class="map">
+  <div class="map" @click="unselectTable">
     <h3>Карта офиса</h3>
 
     <div v-if="!isLoading" class="map-root">
@@ -76,13 +76,14 @@ export default {
             legend.find((it) => it.group_id === table.group_id)?.color ??
               "transparent"
           )
-          .on("click", () => {
+          .on("click", (event) => {
+            event.stopPropagation();
+            event.preventDefault();
             this.selectTable(table._id);
           });
       });
     },
     selectTable(tableId) {
-      console.log(tableId);
       this.$emit("selectTable", tableId);
     },
     unselectTable() {
