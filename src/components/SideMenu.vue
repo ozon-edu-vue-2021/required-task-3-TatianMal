@@ -84,6 +84,15 @@ export default {
       return format(new Date(), "dd.MM.yyyy HH:mm");
     },
   },
+  watch: {
+    isUserOpened() {
+      if (!this.isUserOpened) {
+        this.$nextTick(() => {
+          this.makeChart();
+        });
+      }
+    },
+  },
   created() {
     this.loadLegend();
   },
