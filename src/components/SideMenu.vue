@@ -49,7 +49,7 @@
 
 <script>
 import Draggable from "vuedraggable";
-import { Doughnut as PieChart } from "vue-chartjs";
+import { Pie as PieChart } from "vue-chartjs";
 import { format } from "date-fns";
 
 import LegendItem from "./SideMenu/LegendItem.vue";
