@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { format, parseISO } from "date-fns";
+
 export default {
   props: {
     person: {
@@ -25,7 +27,16 @@ export default {
   },
   computed: {
     formatedDate() {
-      return this.person.registered;
+      try {
+        const date = parseISO(this.person.registered);
+        return format(date, "dd.MM.yyyy HH:mm");
+      } catch (e) {
+        if (e instanceof RangeError) {
+          return "Некорректный формат даты";
+        }
+        console.error(e);
+        return "-";
+      }
     },
   },
 };

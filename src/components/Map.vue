@@ -75,8 +75,18 @@ export default {
             "fill",
             legend.find((it) => it.group_id === table.group_id)?.color ??
               "transparent"
-          );
+          )
+          .on("click", () => {
+            this.selectTable(table._id);
+          });
       });
+    },
+    selectTable(tableId) {
+      console.log(tableId);
+      this.$emit("selectTable", tableId);
+    },
+    unselectTable() {
+      this.$emit("unselectTable");
     },
   },
 };
